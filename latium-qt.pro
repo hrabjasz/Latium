@@ -1,13 +1,45 @@
 TEMPLATE = app
 TARGET = latium-qt
-VERSION = 0.7.2
+VERSION = 0.7.4
 INCLUDEPATH += src src/json src/qt
 DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
 CONFIG += no_include_pwd
 
 # UNCOMMENT THIS SECTION TO BUILD ON WINDOWS
 # Change paths if needed, these use the foocoin/deps.git repository locations
+win32: {
+    QT += gui core network
+    BOOST_LIB_SUFFIX=-mgw48-mt-s-1_55
+    #B0OST absolute path
+    #BOOST_INCLUDE_PATH=C:/deps/boost_1_55_0
+    #BOOST_LIB_PATH=C:/deps/boost_1_55_0/stage/lib
+    #BOOST relative path
+    BOOST_INCLUDE_PATH=$$PWD/dependencies/boost_1_55_0
+    BOOST_LIB_PATH=$$PWD/dependencies/boost_1_55_0/stage/lib
 
+    #BDB Absolute path
+    #BDB_INCLUDE_PATH=C:/deps/db-4.8.30.NC/build_unix
+    #BDB_LIB_PATH=C:/deps/db-4.8.30.NC/build_unix
+    #BDB relative path
+    BDB_INCLUDE_PATH=$$PWD/dependencies/db-4.8.30.NC/build_unix
+    BDB_LIB_PATH=$$PWD/dependencies/db-4.8.30.NC/build_unix
+
+    #OPENSSL absolute path
+    #OPENSSL_INCLUDE_PATH=C:/deps/openssl-1.0.1i/include
+    #OPENSSL_LIB_PATH=C:/deps/openssl-1.0.1i
+    #OPENSSL relative path
+    OPENSSL_INCLUDE_PATH=$$PWD/dependencies/openssl-1.0.1i/include
+    OPENSSL_LIB_PATH=$$PWD/dependencies/openssl-1.0.1i
+
+    #MINIUPNPC absolute path
+    #MINIUPNPC_INCLUDE_PATH=dependencies/
+    #MINIUPNPC_LIB_PATH=dependencies/miniupnpc
+    #MINIUPNPC realtive path
+    MINIUPNPC_INCLUDE_PATH=$$PWD/dependencies/
+    MINIUPNPC_LIB_PATH=$$PWD/dependencies/miniupnpc
+}
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 OBJECTS_DIR = build
 MOC_DIR = build
